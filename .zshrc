@@ -48,6 +48,11 @@ alias reload=" exec zsh -li" # reload zsh
 }
 take() { mkdir -p $@ && cd $@; }
 
+checkpoint() {
+  git add A .
+  git commit -m "checkpoint at $(date '+%Y-%m-%dT%H:%M:%S%z')"
+  echo "Checkpoint created"
+}
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
