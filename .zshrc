@@ -27,17 +27,17 @@ setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 setopt INTERACTIVE_COMMENTS
 
-alias v=vim
+alias v=$EDITOR
 alias l="eza --git --long"
 alias la="eza --icons --git --all --long"
-alias e='exit'
 alias gp='git pull'
 alias gs='git status'
 alias gpo='git push origin'
 alias gc='git commit'
 alias gcm='git commit --message'
 alias gaa='git add -A .'
-alias reload=" exec zsh -li" # reload zsh
+alias e='exit'
+alias r=" exec zsh -li"
 
 '-'() {
   cd -
@@ -46,10 +46,11 @@ alias reload=" exec zsh -li" # reload zsh
 '?'() {
   llm
 }
+
 take() { mkdir -p $@ && cd $@; }
 
 checkpoint() {
-  git add A .
+  git add -A .
   git commit -m "checkpoint at $(date '+%Y-%m-%dT%H:%M:%S%z')"
   echo "Checkpoint created"
 }
