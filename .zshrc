@@ -16,6 +16,7 @@ bindkey -v
 
 zmodload -i zsh/complist
 
+
 KEYTIMEOUT=1
 HIST_SIZE=1000000000
 SAVE_HIST=1000000000
@@ -24,10 +25,11 @@ SAVE_HIST=1000000000
 setopt AUTO_CD     
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
+setopt INTERACTIVE_COMMENTS
 
 alias v=vim
-alias l='ls --color=auto'
-alias la='ls -lathr'
+alias l="eza --git --long"
+alias la="eza --icons --git --all --long"
 alias e='exit'
 alias gp='git pull'
 alias gs='git status'
@@ -35,6 +37,8 @@ alias gpo='git push origin'
 alias gc='git commit'
 alias gcm='git commit --message'
 alias gaa='git add -A .'
+alias reload=" exec zsh -li" # reload zsh
+
 '-'() {
   cd -
 }
@@ -42,16 +46,8 @@ alias gaa='git add -A .'
 '?'() {
   llm
 }
+take() { mkdir -p $@ && cd $@; }
 
-mkcd() {
-  if [ ! -n "$1" ]; then
-    echo "Enter a directory name"
-  elif [ -d $1 ]; then
-    echo "\`$1' already exists"
-  else
-    mkdir $1 && cd $1
-  fi
-}
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
@@ -59,7 +55,9 @@ zstyle ':completion:*' completer _complete _approximate # complete _approximate 
 zstyle ':completion:*' list-colors \
   'ma=1;37;44' 'di=1;34' 'ln=36' 'ex=1;32' 'fi=0'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey -M menuselect '\e' send-break
+
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
