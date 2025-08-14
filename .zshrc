@@ -46,6 +46,7 @@ alias r=" exec zsh -li"
 '?'() {
   llm
 }
+function c { cursor ${@:-.} }
 
 take() { mkdir -p $@ && cd $@; }
 
@@ -60,12 +61,20 @@ zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' completer _complete _approximate # complete _approximate – tries normal completion first, then fuzzy matching.
 zstyle ':completion:*' list-colors \
   'ma=1;37;44' 'di=1;34' 'ln=36' 'ex=1;32' 'fi=0'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' list-separator '   '
 bindkey -M menuselect '\e' send-break
+# zstyle ':completion:*' menu select=long search
+# zstyle ':completion:*' list-prompt  ''
+# zstyle ':completion:*' select-prompt ''
 
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ## fzf for something, or everything
 # exa? or better l
+LISTMAX=0
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/booker/.lmstudio/bin"
+# End of LM Studio CLI section
+
