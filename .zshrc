@@ -1,19 +1,20 @@
 eval "$(fnm env --use-on-cd --shell zsh)"
-# TODO: Add fnm completions somehow?
 
 export HOMEBREW_PREFIX="/opt/homebrew"
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # History
 HISTSIZE=1000000000
 SAVEHIST=1000000000
 mkdir -p "${XDG_CACHE_HOME}/zsh"
 HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
-setopt HIST_IGNORE_DUPS SHARE_HISTORY 
+setopt HIST_IGNORE_DUPS SHARE_HISTORY INTERACTIVE_COMMENTS
+
 
 # Zsh options
 KEYTIMEOUT=1
-setopt AUTO_CD INTERACTIVE_COMMENTS
+setopt AUTO_CD
+setopt INTERACTIVE_COMMENTS
 bindkey -v
 bindkey '\C-r' history-incremental-search-backward
 
@@ -28,6 +29,7 @@ alias gcm='git commit --message'
 alias gaa='git add -A .'
 alias e='exit'
 alias r='exec zsh -li'
+alias vim='echo "use v or nvim"'
 
 # Functions
 '-'() { cd -; }
@@ -52,6 +54,7 @@ zmodload zsh/complist
 autoload -U compinit
 compinit
 
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' completer _complete _approximate
@@ -67,3 +70,6 @@ fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
 source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# $ for user like the gods intended
+PURE_PROMPT_SYMBOL=$
