@@ -1,4 +1,5 @@
 eval "$(fnm env --use-on-cd --shell zsh)"
+# TODO: Add fnm completions somehow?
 
 export HOMEBREW_PREFIX="/opt/homebrew"
 export EDITOR="vim"
