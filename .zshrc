@@ -8,14 +8,11 @@ HISTSIZE=1000000000
 SAVEHIST=1000000000
 mkdir -p "${XDG_CACHE_HOME}/zsh"
 HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
+setopt HIST_IGNORE_DUPS SHARE_HISTORY 
 
 # Zsh options
 KEYTIMEOUT=1
-setopt AUTO_CD
-setopt HIST_IGNORE_DUPS
-setopt SHARE_HISTORY
-setopt INTERACTIVE_COMMENTS
-setopt HIST_IGNORE_SPACE
+setopt AUTO_CD INTERACTIVE_COMMENTS
 bindkey -v
 bindkey '\C-r' history-incremental-search-backward
 
@@ -53,7 +50,6 @@ path() { echo "$PATH" | tr ':' '\n' }
 zmodload zsh/complist
 autoload -U compinit
 compinit
-
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
