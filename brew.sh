@@ -14,3 +14,4 @@ brew install pure
 brew install zsh-syntax-highlighting
 brew install pnpm
 brew install eza
+brew install gh
