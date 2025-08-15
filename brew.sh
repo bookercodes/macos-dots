@@ -1,0 +1,16 @@
+brew install neovim
+brew install 1password
+brew install arc
+brew install cursor
+brew install raycast
+brew install ghostty
+brew install granola
+brew install cleanshot
+brew install zoom
+brew install superwhisper
+brew install contexts
+brew install slack
+brew install pure
+brew install zsh-syntax-highlighting
+brew install pnpm
+brew install eza
