@@ -1,35 +1,27 @@
-export PATH=$PATH:/Users/booker/.local/bin
+eval "$(fnm env --use-on-cd --shell zsh)"
 
-export PNPM_HOME="/Users/booker/Library/pnpm"
-# export XDG_CONFIG_HOME=~/.config
-export EDITOR=vim
+export HOMEBREW_PREFIX="/opt/homebrew"
+export EDITOR="vim"
 
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+# History
+HISTSIZE=1000000000
+SAVEHIST=1000000000
+mkdir -p "${XDG_CACHE_HOME}/zsh"
+HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
 
-eval "$(starship init zsh)"
-
-bindkey -v
-# bindkey -M vicmd "/" history-incremental-search-backward
-
-zmodload -i zsh/complist
-
-
+# Zsh options
 KEYTIMEOUT=1
-HIST_SIZE=1000000000
-SAVE_HIST=1000000000
-#HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
-
-setopt AUTO_CD     
+setopt AUTO_CD
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 setopt INTERACTIVE_COMMENTS
+setopt HIST_IGNORE_SPACE
+bindkey -v
+bindkey '\C-r' history-incremental-search-backward
 
-alias v=$EDITOR
-alias l="eza --git --long"
-alias la="eza --icons --git --all --long"
+# Aliases
+alias l='eza --git --long'
+alias la='eza --icons --git --all --long'
 alias gp='git pull'
 alias gs='git status'
 alias gpo='git push origin'
@@ -37,44 +29,44 @@ alias gc='git commit'
 alias gcm='git commit --message'
 alias gaa='git add -A .'
 alias e='exit'
-alias r=" exec zsh -li"
+alias r='exec zsh -li'
 
-'-'() {
-  cd -
+# Functions
+'-'() { cd -; }
+'?'() { llm; }
+c() { cursor "${@:-.}"; }
+v() { $EDITOR "${@:-.}"; }
+take() {
+  mkdir -p "$@"
+  local last
+  last="${@: -1}"
+  cd "$last"
 }
-
-'?'() {
-  llm
-}
-function c { cursor ${@:-.} }
-
-take() { mkdir -p $@ && cd $@; }
-
 checkpoint() {
   git add -A .
   git commit -m "checkpoint at $(date '+%Y-%m-%dT%H:%M:%S%z')"
   echo "Checkpoint created"
 }
+path() { echo "$PATH" | tr ':' '\n' }
+
+# Modules and completion
+zmodload zsh/complist
+autoload -U compinit
+compinit
+
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
-zstyle ':completion:*' completer _complete _approximate # complete _approximate – tries normal completion first, then fuzzy matching.
+zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' list-colors \
   'ma=1;37;44' 'di=1;34' 'ln=36' 'ex=1;32' 'fi=0'
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 zstyle ':completion:*' list-separator '   '
 bindkey -M menuselect '\e' send-break
-# zstyle ':completion:*' menu select=long search
-# zstyle ':completion:*' list-prompt  ''
-# zstyle ':completion:*' select-prompt ''
 
+fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-## fzf for something, or everything
-# exa? or better l
-LISTMAX=0
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/booker/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# Prompt and plugins
+autoload -U promptinit; promptinit
+prompt pure
+source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
