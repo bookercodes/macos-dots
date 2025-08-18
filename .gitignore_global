@@ -1,0 +1,13 @@
+.DS_Store
+.vscode/
+npm-debug.log
+yarn-error.log
+Session.vim
+.netrwhist
+*~
+*.swp
+.lvimrc
+.history
+*.ignored/
+*.ignored.*
+.eslintcache

@@ -1,0 +1,5 @@
+[user]
+	name = Alex Booker
+	email = booker@booker.codes
+[core]
+	excludesfile = ~/.gitignore_global

@@ -2,6 +2,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 export HOMEBREW_PREFIX="/opt/homebrew"
 export EDITOR="nvim"
+export HOMEBREW_NO_ENV_HINTS=1
 
 # History
 HISTSIZE=1000000000
@@ -49,11 +50,12 @@ checkpoint() {
 }
 path() { echo "$PATH" | tr ':' '\n' }
 
+fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
+
 # Modules and completion
 zmodload zsh/complist
 autoload -U compinit
 compinit
-
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' file-sort modification
@@ -64,8 +66,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-separator '   '
 bindkey -M menuselect '\e' send-break
 
-fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
-
 # Prompt and plugins
 autoload -U promptinit; promptinit
 prompt pure
@@ -73,3 +73,4 @@ source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting
 
 # $ for user like the gods intended
 PURE_PROMPT_SYMBOL=$
+PURE_PROMPT_VICMD_SYMBOL='VIS'
