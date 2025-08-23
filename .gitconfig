@@ -3,3 +3,6 @@
 	email = booker@booker.codes
 [core]
 	excludesfile = ~/.gitignore_global
+[push]
+	autoSetupRemote = true
+

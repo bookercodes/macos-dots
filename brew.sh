@@ -16,3 +16,5 @@ brew install pnpm
 brew install eza
 brew install gh
 brew install karabiner-elements
+brew install descript
+brew install spotify

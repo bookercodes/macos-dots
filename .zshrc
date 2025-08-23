@@ -23,6 +23,7 @@ bindkey '\C-r' history-incremental-search-backward
 alias l='eza --git --long'
 alias la='eza --icons --git --all --long'
 alias gp='git pull'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gs='git status'
 alias gpo='git push origin'
 alias gc='git commit'
