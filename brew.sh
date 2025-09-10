@@ -18,3 +18,4 @@ brew install gh
 brew install karabiner-elements
 brew install descript
 brew install spotify
+brew install btop

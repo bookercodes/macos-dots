@@ -9,7 +9,7 @@ HISTSIZE=1000000000
 SAVEHIST=1000000000
 mkdir -p "${XDG_CACHE_HOME}/zsh"
 HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
-setopt HIST_IGNORE_DUPS SHARE_HISTORY INTERACTIVE_COMMENTS
+setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY INTERACTIVE_COMMENTS
 
 
 # Zsh options
@@ -32,6 +32,9 @@ alias gaa='git add -A .'
 alias e='exit'
 alias r='exec zsh -li'
 alias vim='echo "use v or nvim"'
+alias pnd="pnpm run dev"
+alias pnx="pnpm dlx"
+alias cma="pnx create-mastra@latest"
 
 # Functions
 '-'() { cd -; }
@@ -75,3 +78,6 @@ source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting
 # $ for user like the gods intended
 PURE_PROMPT_SYMBOL=$
 PURE_PROMPT_VICMD_SYMBOL='VIS'
+
+# TODO
+#   Setup Zoxide
