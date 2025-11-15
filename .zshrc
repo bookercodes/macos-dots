@@ -11,7 +11,6 @@ mkdir -p "${XDG_CACHE_HOME}/zsh"
 HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
 setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY INTERACTIVE_COMMENTS
 
-
 # Zsh options
 KEYTIMEOUT=1
 setopt AUTO_CD
@@ -20,8 +19,7 @@ bindkey -v
 bindkey '\C-r' history-incremental-search-backward
 
 # Aliases
-alias l='eza --git --long'
-alias la='eza --icons --git --all --long'
+alias l='eza -la --group-directories-first --sort=created --no-user --no-permissions  --no-filesize --time-style=relative --time=created --color=always'
 alias gp='git pull'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gs='git status'
@@ -41,7 +39,7 @@ alias cma="pnx create-mastra@latest"
 '?'() { llm; }
 c() { cursor "${@:-.}"; }
 v() { $EDITOR "${@:-.}"; }
-take() {
+mkcd() {
   mkdir -p "$@"
   local last
   last="${@: -1}"
@@ -74,6 +72,7 @@ bindkey -M menuselect '\e' send-break
 autoload -U promptinit; promptinit
 prompt pure
 source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source <(fzf --zsh)
 
 # $ for user like the gods intended
 PURE_PROMPT_SYMBOL=$
@@ -81,3 +80,5 @@ PURE_PROMPT_VICMD_SYMBOL='VIS'
 
 # TODO
 #   Setup Zoxide
+#
+export FZF_DEFAULT_OPTS=''
