@@ -16,4 +16,9 @@ brew install eza
 brew install gh
 brew install karabiner-elements
 brew install descript
-brew install spotify
+brew install zoom
+brew install fnm
+brew install fzf
+brew install gh
+brew install zoxide
+brew install yt-dlp
