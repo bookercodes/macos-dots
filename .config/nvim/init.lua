@@ -45,9 +45,8 @@ vim.diagnostic.config({
 -- Disable command-line window
 vim.keymap.set("n", "q:", "<nop>")
 
--- Command+S to save file
-vim.keymap.set("n", "<D-s>", ":w<CR>", { silent = true })
-vim.keymap.set("i", "<D-s>", "<Esc>:w<CR>", { silent = true })
+-- Leader+w to save file
+vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true, desc = "Save file" })
 
 -- Navigate between splits with Ctrl+hjkl
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })

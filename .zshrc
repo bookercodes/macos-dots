@@ -24,7 +24,7 @@ alias gs='git status'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias pull='git pull'
 alias push='git push origin'
-alias gc='git commit'
+alias gc='git clone'
 alias gco='git checkout'
 alias gcm='git commit --message --no-verify'
 alias gaa='git add -A .'
@@ -34,11 +34,11 @@ alias pnx="pnpm dlx"
 alias cma="pnx create-mastra@latest"
 alias r='exec zsh -li'
 alias cl="claude"
-alias clear='echo "use Control+L unless you like wasting your time and u want RSI"'
 alias vim='echo "use v or nvim"'
+alias c="clear"
 
 '-'() { cd - }
-c() { cursor "${@:-.}" }
+cu() { cursor "${@:-.}" }
 v() { $EDITOR "${@:-.}" }
 
 take() {

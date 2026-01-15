@@ -22,3 +22,5 @@ brew install fzf
 brew install gh
 brew install zoxide
 brew install yt-dlp
+brew install ripgrep
+brew install --cask jordanbaird-ice
