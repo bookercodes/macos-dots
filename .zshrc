@@ -33,7 +33,7 @@ alias npd="npm run dev"
 alias pnx="pnpm dlx"
 alias cma="pnx create-mastra@latest"
 alias r='exec zsh -li'
-alias cl="claude"
+alias cl="IS_DEMO=1 claude"
 alias vim='echo "use v or nvim"'
 alias c="clear"
 
@@ -72,9 +72,30 @@ bindkey -M menuselect '\e' send-break
 autoload -U promptinit; promptinit
 prompt pure
 PURE_PROMPT_SYMBOL=$
-PURE_PROMPT_VICMD_SYMBOL='VIS'
+# PURE_PROMPT_VICMD_SYMBOL='VIS'
+zstyle :prompt:pure:environment:title show no
 
+_set_title() {
+  local git_root
+  git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -n "$git_root" ]]; then
+    local repo_name=$(basename "$git_root")
+    local prefix=$(git rev-parse --show-prefix 2>/dev/null)
+    prefix=${prefix%/}
+    if [[ -n "$prefix" ]]; then
+      print -Pn "\e]0;${repo_name}/${prefix}\a"
+    else
+      print -Pn "\e]0;${repo_name}\a"
+    fi
+  else
+    print -Pn "\e]0;$(basename "$PWD")\a"
+  fi
+}
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)"
 source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source <(fzf --zsh)
+export PATH="$HOME/.local/bin:$PATH"
+precmd_functions+=(_set_title)
+chpwd_functions+=(_set_title)
+_set_title

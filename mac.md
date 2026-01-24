@@ -1,59 +1,63 @@
 macOS settings
 
 - Wi-Fi
-    - TODO - enable private IP
+  - TODO - enable private IP
 - Network
-    -  Firewall=Y
-        - Enable Stealth Mode=Y
+  - Firewall=Y
+    - Enable Stealth Mode=Y
 - General
-    - About
-        - Name=mbp
-    - Storage
-        - Empty Bin automatically=Y
-    - AirDrop & Handoff
-    - AutoFill & Passwords
-        - AutoFill Passwords and Passkeys=N
-    - Language & Region
-        - Preferred Language=English (US)
+  - About
+    - Name=mbp
+  - Storage
+    - Empty Bin automatically=Y
+  - AirDrop & Handoff
+  - AutoFill & Passwords
+    - AutoFill Passwords and Passkeys=N
+  - Language & Region
+    - Preferred Language=English (US)
+- Apperance
+  - Auto
+  - Icon & widget style
+    - Clear (Auto)
 - Trackpad
-    - Tracking speed=4
-    - Tap to click=Y
+  - Trackng speed=4
+  - Tap to click=Y
 - Desktop & Dock
-    - Dock
-        - Position on screen=Left
-        - Minimize windows into application icon=Y
-        - Automatically hide and show the Dock=Y
-        - Show suggested and recent apps in Dock=N
-    - Desktop & Stage Manager
-        - Show Items on Desktop=N
-        - Click wallpaper to reveal desktop=Only in Stage Manager
-    - Mission Control
-        - Automatically rearrange Spaces based on most recent use=N
-    - Default web browser=Arc
+  - Dock
+    - Position on screen=Bottom
+    - Minimize windows into application icon=Y
+    - Automatically hide and show the Dock=Y
+    - Show suggested and recent apps in Dock=N
+  - Desktop & Stage Manager
+    - Show Items on Desktop=N
+    - Click wallpaper to reveal desktop=Only in Stage Manager
+  - Mission Control
+    - Automatically rearrange Spaces based on most recent use=N
+  - Default web browser=Arc
 - Displays
-    - Night Shift…
-        - Schedule=Sunset to Sunrise
+  - Night Shift…
+    - Schedule=Sunset to Sunrise
 - Sound
-    - Sound Effects
-        - Play sound on startup=N
+  - Sound Effects
+    - Play sound on startup=N
 - Lock Screen
-    - Start Screen Saver when inactive=5 minutes
-    - Turn display off on battery when inactive=5 minutes
-    - Turn display off on power adapter when inactive=3 hours
-    - Require password after screen saver begins or display is turned off=Immediately
-    - Show username and photo=N
-    - Show message when locked=If found, please email
+  - Start Screen Saver when inactive=5 minutes
+  - Turn display off on battery when inactive=5 minutes
+  - Turn display off on power adapter when inactive=3 hours
+  - Require password after screen saver begins or display is turned off=Immediately
+  - Show username and photo=N
+  - Show message when locked=If found, please email
 - Privacy & Security
-    - Turn on FileVault
+  - Turn on FileVault
 - Touch ID & Password
-    - Add index fingers and right thumb
+  - Add index fingers and right thumb
 - Keyboard
-    - Keyboard Shortcuts…
-        - Spotlight
-            - Show Spotlight search=N
-            - Show Finder search window=N
-    - Text Input
-        - British
-            - Show Input menu in menu bar=N
-            - Capitalise words automatically=N
-            - Spelling=U.S. English 
+  - Keyboard Shortcuts…
+    - Spotlight
+      - Show Spotlight search=N
+      - Show Finder search window=N
+  - Text Input
+    - British
+      - Show Input menu in menu bar=N
+      - Capitalise words automatically=N
+      - Spelling=U.S. English
