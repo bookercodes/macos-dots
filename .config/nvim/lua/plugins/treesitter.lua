@@ -9,10 +9,9 @@ return {
 				highlight = { enable = true },
 			})
 
-			-- Use markdown highlighting for .mdx files
 			vim.filetype.add({
 				extension = {
-					mdx = "markdown",
+					mdx = "markdown.mdx",
 				},
 			})
 		end,

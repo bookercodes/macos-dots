@@ -1,18 +1,18 @@
 window-title-font-family = "JetBrains Mono"
-font-family="Berkeley Mono Trial"
+font-family="Berkeley Mono"
 clipboard-trim-trailing-spaces = true
 bold-is-bright = true
 window-padding-x=12
 window-padding-y=12
 clipboard-paste-protection = false
 confirm-close-surface = false
-theme = dark:Vesper,light:GitLab Light
+theme = dark:Vesper,light:Zenbones Light
 font-size=14
 macos-option-as-alt = left
 macos-titlebar-style = tabs
 
-copy-on-select = true
-unfocused-split-opacity = 0.72
+copy-on-select = clipboard
+unfocused-split-opacity = 0.50
 macos-icon = retro
 resize-overlay = always
 background-blur = 20
@@ -20,6 +20,7 @@ shell-integration-features = no-title
 
 keybind = shift+enter=text:\x1b\r
 keybind = super+comma=unbind
+keybind = super+period=text:\x1b[46;9u
 
 # Tabs
 keybind = super+one=unbind
@@ -57,3 +58,13 @@ keybind = alt+shift+l=resize_split:right,10
 # Create splits
 keybind = alt+d=new_split:right
 keybind = alt+shift+d=new_split:down
+
+# Font size (all splits)
+keybind = all:super+plus=increase_font_size:1
+keybind = all:super+equal=increase_font_size:1
+keybind = all:super+minus=decrease_font_size:1
+keybind = all:super+zero=reset_font_size
+
+macos-window-buttons=hidden
+shell-integration-features = ssh-env
+bell-features = no-title

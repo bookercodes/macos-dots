@@ -10,7 +10,7 @@ return {
 				handler_opts = {
 					border = "rounded",
 				},
-			});
+			})
 		end,
 	},
 	{
@@ -23,10 +23,10 @@ return {
 				border = "rounded",
 				max_width = 80,
 				max_height = 30,
-			};
+			}
 
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_opts);
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_opts);
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_opts)
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_opts)
 
 			-- Auto-install these LSP servers and formatters
 			local ensure_installed = { "lua-language-server", "typescript-language-server", "prettier", "stylua" }
@@ -39,21 +39,43 @@ return {
 			end
 
 			-- Get enhanced capabilities from nvim-cmp
-			local capabilities = require("cmp_nvim_lsp").default_capabilities();
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- LSP keybindings
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
 					local opts = { buffer = args.buf }
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+
+					-- Navigation (using Telescope)
+					local builtin = require("telescope.builtin");
+					vim.keymap.set("n", "gr", builtin.lsp_references, opts);
+					vim.keymap.set("n", "gd", builtin.lsp_definitions, opts);
+					vim.keymap.set("n", "gi", builtin.lsp_implementations, opts);
+					-- Info & Actions
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					-- Signature help for function arguments
-					vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts)
-					vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+					vim.keymap.set("n", "<D-.>", vim.lsp.buf.code_action, opts)
+				vim.keymap.set("n", "\x1b[46;9u", vim.lsp.buf.code_action, opts)
+					vim.keymap.set("n", "<D-r>", function()
+						vim.ui.input({ prompt = "Rename: " }, function(new_name)
+							if new_name and #new_name > 0 then
+								vim.lsp.buf.rename(new_name);
+							end
+						end);
+					end, opts)
+
+					-- Diagnostics
+					vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+					vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+					vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+					vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
+
+					-- Symbols (using Telescope)
+					vim.keymap.set("n", "<leader>ws", builtin.lsp_workspace_symbols, opts);
+					vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, opts);
+
+					-- Call Hierarchy
+					vim.keymap.set("n", "<leader>ci", vim.lsp.buf.incoming_calls, opts)
+					vim.keymap.set("n", "<leader>co", vim.lsp.buf.outgoing_calls, opts)
 				end,
 			})
 
@@ -69,6 +91,11 @@ return {
 				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 				root_markers = { "package.json", "tsconfig.json", ".git" },
 				capabilities = capabilities,
+				commands = {
+					["_typescript.applyCodeActionCommand"] = function()
+						-- Handled by the server, just acknowledge it
+					end,
+				},
 				settings = {
 					typescript = {
 						inlayHints = {
