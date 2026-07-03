@@ -19,6 +19,7 @@ setopt INTERACTIVE_COMMENTS
 bindkey -v
 bindkey '\C-r' history-incremental-search-backward
 
+alias mastra='pnx mastra'
 alias cd='z'
 alias l='eza -la --icons=never --group-directories-first --sort=created --no-user --no-permissions --no-filesize --time-style="+%d %b" --time=created'
 alias gs='git status'
@@ -28,13 +29,25 @@ alias push='git push origin'
 gc() {
   git clone "$@" && cd "$(basename "${@: -1}" .git)"
 }
+fresh() {
+  # Use this when you are done with a branch and want local main to be a clean
+  # copy of origin/main. This discards tracked local changes in the current repo.
+  git fetch origin;
+  git switch -f main;
+  git reset --hard origin/main;
+
+  # Remove untracked files and directories, but keep ignored files like caches,
+  # build output, and .env files. Use `git clean -fdx` manually if you really
+  # want ignored files deleted too.
+  git clean -fd;
+}
 alias gco='git checkout'
 alias gcm='git commit --message'
 alias gaa='git add -A .'
 alias pnd="pnpm run dev"
 alias npd="npm run dev"
 alias pnx="pnpm dlx"
-alias cl="IS_DEMO=1 claude --dangerously-skip-permissions"
+alias oc="opencode --continue"
 
 '-'() { cd - }
 cu() { cursor "${@:-.}" }
